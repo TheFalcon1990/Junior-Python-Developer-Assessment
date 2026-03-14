@@ -1,0 +1,38 @@
+{
+    "database" : {
+
+        "CUSTOMERS" : {
+            "customer_id" : "INTEGER PRIMARY KEY",
+            "first_name" : "VARCHAR NOT NULL",
+            "surname" : "VARCHAR NOT NULL",
+            "email" : "VARCHAR NOT NULL",
+            "status" : "VARCHAR NOT NULL"
+        },
+
+        "ORDERS" : {
+            "order_id" : "INTEGER PRIMARY KEY",
+            "customer_id" : "INTEGER NOT NULL",
+            "product_name" : "VARCHAR NOT NULL",
+            "quantity" : "INTEGER NOT NULL",
+            "price" : "DECIMAL(10, 2) NOT NULL",
+            "FOREIGN KEY (customer_id)" : "REFERENCES CUSTOMERS(customer_id)"
+        }
+    },
+
+    "row_count" : 50,
+
+    "query_templates" : {
+
+       "select_customers" : "SELECT * FROM CUSTOMERS",
+
+        "select_orders" : "SELECT * FROM ORDERS",
+
+        "get_order": "SELECT * FROM ORDERS WHERE order_id = ?",
+
+        "get_order_items": "SELECT * FROM ORDERS WHERE order_id = ?",
+
+        "get_customer_orders" : "SELECT * FROM ORDERS WHERE customer_id = ?",
+
+        "get_customer": "SELECT * FROM CUSTOMERS WHERE customer_id = ?"
+    }
+}
